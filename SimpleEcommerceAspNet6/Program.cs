@@ -1,10 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using SimpleEcommerceAspNet6.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDbContext<EcommerceDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("SimpleEcommerceAspNet6")));
+
 var app = builder.Build();
 
+builder.Services.AddDbContext<EcommerceDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("SimpleEcommerceAspNet6")));
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
