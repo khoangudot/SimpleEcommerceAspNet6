@@ -39,7 +39,7 @@ namespace SimpleEcommerceAspNet6.Data
 
             modelBuilder.Entity<Role_User>()
                 .HasOne(ru=>ru.User)
-                .WithMany(ru=>ru.Role_Users)
+                .WithMany(ru=>ru.Role_Users) 
                 .HasForeignKey(ru=>ru.UserId);
 
             modelBuilder.Entity<Role_User>()

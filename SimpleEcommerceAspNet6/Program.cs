@@ -11,8 +11,6 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("SimpleEcommerceA
 
 var app = builder.Build();
 
-builder.Services.AddDbContext<EcommerceDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("SimpleEcommerceAspNet6")));
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -28,8 +26,15 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "areas",
+        pattern: "{area:exists}/{controller=DashBoard}/{action=Index}/{id?}");
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
 
 app.Run();

@@ -542,3 +542,4 @@ E:\Fshop\WebMVC\SimpleEcommerceAspNet6\SimpleEcommerceAspNet6\obj\Debug\net6.0\r
 E:\Fshop\WebMVC\SimpleEcommerceAspNet6\SimpleEcommerceAspNet6\obj\Debug\net6.0\SimpleEcommerceAspNet6.pdb
 E:\Fshop\WebMVC\SimpleEcommerceAspNet6\SimpleEcommerceAspNet6\obj\Debug\net6.0\SimpleEcommerceAspNet6.genruntimeconfig.cache
 E:\Fshop\WebMVC\SimpleEcommerceAspNet6\SimpleEcommerceAspNet6\obj\Debug\net6.0\ref\SimpleEcommerceAspNet6.dll
+E:\Fshop\WebMVC\SimpleEcommerceAspNet6\SimpleEcommerceAspNet6\obj\Debug\net6.0\scopedcss\Areas\Manager\Views\Shared\_ManagerLayout.cshtml.rz.scp.css
