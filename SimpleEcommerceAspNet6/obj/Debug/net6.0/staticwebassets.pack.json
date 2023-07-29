@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\Area.Manager.Assets\\css\\app.min.css"
     },
     {
+      "Id": "E:\\Fshop\\WebMVC\\SimpleEcommerceAspNet6\\SimpleEcommerceAspNet6\\wwwroot\\Area.Manager.Assets\\css\\logo.css",
+      "PackagePath": "staticwebassets\\Area.Manager.Assets\\css\\logo.css"
+    },
+    {
       "Id": "E:\\Fshop\\WebMVC\\SimpleEcommerceAspNet6\\SimpleEcommerceAspNet6\\wwwroot\\Area.Manager.Assets\\es6\\app.js",
       "PackagePath": "staticwebassets\\Area.Manager.Assets\\es6\\app.js"
     },

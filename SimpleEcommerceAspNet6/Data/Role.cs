@@ -8,6 +8,6 @@ namespace SimpleEcommerceAspNet6.Data
         public string RoleName { get; set; }
         public string? Description { get; set; }
 
-        public virtual ICollection<Role_User> Role_Users { get; set; }
+        public virtual ICollection<Role_User>? Role_Users { get; set; }
     }
 }

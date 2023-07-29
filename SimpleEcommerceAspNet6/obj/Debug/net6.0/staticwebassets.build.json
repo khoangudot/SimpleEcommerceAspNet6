@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BCV13JLcT3iasNsf/gyyyLWH3TKmKqUfwDTeNy4OFdQ=",
+  "Hash": "yuHrNL/c0a556ZvlqF4bu4g3jRvIJRit0HgomHN7/wI=",
   "Source": "SimpleEcommerceAspNet6",
   "BasePath": "_content/SimpleEcommerceAspNet6",
   "Mode": "Default",
@@ -151,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Area.Manager.Assets\\css\\app.min.css"
+    },
+    {
+      "Identity": "E:\\Fshop\\WebMVC\\SimpleEcommerceAspNet6\\SimpleEcommerceAspNet6\\wwwroot\\Area.Manager.Assets\\css\\logo.css",
+      "SourceId": "SimpleEcommerceAspNet6",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Fshop\\WebMVC\\SimpleEcommerceAspNet6\\SimpleEcommerceAspNet6\\wwwroot\\",
+      "BasePath": "_content/SimpleEcommerceAspNet6",
+      "RelativePath": "Area.Manager.Assets/css/logo.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Area.Manager.Assets\\css\\logo.css"
     },
     {
       "Identity": "E:\\Fshop\\WebMVC\\SimpleEcommerceAspNet6\\SimpleEcommerceAspNet6\\wwwroot\\Area.Manager.Assets\\css\\New Text Document.txt",

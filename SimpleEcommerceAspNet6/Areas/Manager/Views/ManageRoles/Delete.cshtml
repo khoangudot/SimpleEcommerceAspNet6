@@ -1,0 +1,46 @@
+﻿@model SimpleEcommerceAspNet6.Data.Role
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
+}
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Manager" asp-controller="DashBoard" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>DashBoard</a>
+            <a asp-area="Manager" asp-controller="ManageRoles" asp-action="Index" class="breadcrumb-item">Danh sách quyền truy cập</a>
+            <span class="breadcrumb-item active">Xóa quyền truy cập</span>
+        </nav>
+    </div>
+</div>
+<h1 style="color:#03bcf4">Delete</h1>
+
+<div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Thông tin quyền truy cập</h4>
+            <div class="table-responsive">
+                <table class="product-info-table m-t-20">
+                    <tbody>
+                        <tr>
+                            <td>Tên quyền truy cập:</td>
+                            <td> @Model.RoleName</td>
+                        </tr>
+                        <tr>
+                            <td>Mô tả:</td>
+                            <td>@Model.Description</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="RoleId" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a class="btn btn-info btn-tone m-r-5" asp-action="Index">Back to List</a>
+    </form>
+</div>

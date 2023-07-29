@@ -1,10 +1,16 @@
+using AspNetCoreHero.ToastNotification;
 using Microsoft.EntityFrameworkCore;
 using SimpleEcommerceAspNet6.Data;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder.Services.AddNotyf(config => { config.DurationInSeconds = 3; config.Position = NotyfPosition.TopCenter;});
+
+builder.Services.AddSingleton<HtmlEncoder>(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All }));
 
 builder.Services.AddDbContext<EcommerceDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("SimpleEcommerceAspNet6")));
