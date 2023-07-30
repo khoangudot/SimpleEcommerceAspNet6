@@ -1,0 +1,42 @@
+﻿@model SimpleEcommerceAspNet6.Data.Category
+
+@{
+    ViewData["Title"] = "Chỉnh Sửa Danh Mục Sản Phẩm";
+    Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Manager" asp-controller="DashBoard" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>DashBoard</a>
+            <a asp-area="Manager" asp-controller="ManageCategories" asp-action="Index" class="breadcrumb-item">Danh Mục Sản Phẩm</a>
+            <span class="breadcrumb-item active">Chỉnh Sửa Danh Mục Sản Phẩm</span>
+        </nav>
+    </div>
+</div>
+<div class="w-50">
+    <div class="d-flex justify-content-between">
+        <h1 style="color:#03bcf4">Chỉnh Sửa Danh Mục Sản Phẩm</h1>
+        <div>
+            <a class="btn btn-info m-r-5 mb-0" asp-action="Index">Back to List</a>
+        </div>
+    </div>
+    <hr />
+
+
+    <form asp-action="Edit" asp-route-id="@Model.CategoryId" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="CategoryId" />
+        <div class="form-group ">
+            <label for="RoleName">Tên quyền truy cập</label>
+            <input class="form-control" type="text" asp-for="CategoryName" />
+            <span asp-validation-for="CategoryName" class="text-danger"></span>
+        </div>
+        <div class="form-group ">
+            <label for="Description">Mô Tả</label>
+            <input class="form-control" type="text" asp-for="Description" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <input class="btn btn-info m-r-5" type="submit" value="Chỉnh sửa" />
+    </form>
+</div>

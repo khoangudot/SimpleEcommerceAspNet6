@@ -1,0 +1,70 @@
+﻿@model SimpleEcommerceAspNet6.Data.User
+
+@{
+    ViewData["Title"] = "Tạo mới tài khoản";
+    Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
+}
+<div class="card-body">
+    <h4>Tạo mới tài khoản</h4>
+    <div class="m-t-25" style="max-width: 700px">
+        <form asp-controller="ManageUsers" asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Họ và tên</label>
+                    <input type="text" class="form-control" asp-for="FullName" placeholder="Họ và tên">
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Số điện thoại</label>
+                    <input type="text" class="form-control" asp-for="Phone" placeholder="Số điện thoại">
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Tên Đăng Nhập</label>
+                    <input type="text" class="form-control" asp-for="UserName" placeholder="Tên Đăng Nhập">
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Mật khẩu</label>
+                    <input type="password" class="form-control" asp-for="Password" placeholder="Mật khẩu">
+                     <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Email</label>
+                    <input type="text" class="form-control" asp-for="Email" placeholder="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Ngày sinh</label>
+                    <input type="date" class="form-control" asp-for="Birthday" placeholder="Ngày sinh">
+                     <span asp-validation-for="Birthday" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Quyền truy cập</label>
+                    <!-- Đảm bảo roles có giá trị và không rỗng -->
+                    @if (ViewBag.Roles != null)
+                    {
+                        @foreach (SelectListItem role in ViewBag.Roles)
+                        {
+                            <div>
+                                <input type="checkbox" name="RoleIds" value="@role.Value"  />
+                                <label>@role.Text</label>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+           
+           
+            <input class="btn btn-info m-r-5" type="submit" value="Tạo mới" />
+        </form>
+    </div>
+
+</div>

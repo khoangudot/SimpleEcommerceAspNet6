@@ -1,0 +1,106 @@
+﻿@model IEnumerable<SimpleEcommerceAspNet6.Data.Product>
+
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+    Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
+}
+<div class="page-header">
+    <h2 class="header-title">Orders List</h2>
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Manager" asp-controller="DashBoard" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>DashBoard</a>
+            <a asp-area="Manager" asp-controller="ManageProducts" asp-action="Index" class="breadcrumb-item">Danh Sách Sản Phẩm</a>           
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="row m-b-30">
+            <div class="col-lg-8">
+                <div class="d-md-flex">
+                    <div class="m-b-10 m-r-15">
+                        <select class="custom-select" style="min-width: 180px;">
+                            <option selected>Catergory</option>
+                            <option value="all">All</option>
+                            <option value="homeDeco">Home Decoration</option>
+                            <option value="eletronic">Eletronic</option>
+                            <option value="jewellery">Jewellery</option>
+                        </select>
+                    </div>
+                    <div class="m-b-10">
+                        <select class="custom-select" style="min-width: 180px;">
+                            <option selected>Status</option>
+                            <option value="all">All</option>
+                            <option value="inStock">In Stock </option>
+                            <option value="outOfStock">Out of Stock</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-right">
+                <button class="btn btn-primary">
+                    <i class="anticon anticon-plus-circle m-r-5"></i>
+                    <span>Add Product</span>
+                </button>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+                       
+                        <th>ID</th>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock Left</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(Model != null){
+                    <tr>
+                        <td>
+                            #31
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img class="img-fluid rounded" src="~/area.manager.assets/images/others/thumb-9.jpg" style="max-width: 60px" alt="">
+                                <h6 class="m-b-0 m-l-10">Gray Sofa</h6>
+                            </div>
+                        </td>
+                        <td>Home Decoration</td>
+                        <td>$912.00</td>
+                        <td>20</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                <div>In Stock</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown dropdown-animated scale-left">
+
+                                <i type="button" class="anticon anticon-ordered-list" dropdown-toggle" data-toggle="dropdown">
+                                </i>
+                                <div class="dropdown-menu">
+                                    <a asp-area="Manager" asp-controller="ManageUsers" asp-action="Details" asp-route-id="" class="text-decoration-none mx-2 dropdown-item" style="color:black">
+                                        <i class="anticon anticon-select">Details</i>
+                                    </a>
+                                    <a asp-area="Manager" asp-controller="ManageUsers" asp-action="Edit" asp-route-id="" class="text-decoration-none mx-2 dropdown-item" style="color:black">
+                                        <i class="anticon anticon-edit">Edit</i>
+                                    </a>
+                                    <a asp-area="Manager" asp-controller="ManageUsers" asp-action="Delete" asp-route-id="" class="text-decoration-none mx-2 dropdown-item" style="color:black">
+                                        <i class="anticon anticon-delete">Delete</i>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

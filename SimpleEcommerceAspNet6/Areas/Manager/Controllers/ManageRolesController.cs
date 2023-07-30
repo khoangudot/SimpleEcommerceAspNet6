@@ -26,20 +26,20 @@ namespace SimpleEcommerceAspNet6.Areas.Manager.Controllers
         // GET: Manager/ManageRoles
         public async Task<IActionResult> Index()
         {
-              return _context.Role != null ? 
-                          View(await _context.Role.ToListAsync()) :
+              return _context.Roles != null ? 
+                          View(await _context.Roles.ToListAsync()) :
                           Problem("Entity set 'EcommerceDbContext.Role'  is null.");
         }
 
         // GET: Manager/ManageRoles/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Role == null)
+            if (id == null || _context.Roles == null)
             {
                 return NotFound();
             }
 
-            var role = await _context.Role
+            var role = await _context.Roles
                 .FirstOrDefaultAsync(m => m.RoleId == id);
             if (role == null)
             {
@@ -84,13 +84,13 @@ namespace SimpleEcommerceAspNet6.Areas.Manager.Controllers
         // GET: Manager/ManageRoles/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Role == null)
+            if (id == null || _context.Roles == null)
             {
                 _notyfService.Error("ID không tồn tại");
                 return NotFound();
             }
 
-            var role = await _context.Role.FindAsync(id);
+            var role = await _context.Roles.FindAsync(id);
             if (role == null)
             {
                 _notyfService.Error("Không tìm thấy quyền truy cập");
@@ -139,12 +139,12 @@ namespace SimpleEcommerceAspNet6.Areas.Manager.Controllers
         // GET: Manager/ManageRoles/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Role == null)
+            if (id == null || _context.Roles == null)
             {
                 return NotFound();
             }
 
-            var role = await _context.Role
+            var role = await _context.Roles
                 .FirstOrDefaultAsync(m => m.RoleId == id);
             if (role == null)
             {
@@ -159,14 +159,14 @@ namespace SimpleEcommerceAspNet6.Areas.Manager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Role == null)
+            if (_context.Roles == null)
             {
                 return Problem("Entity set 'EcommerceDbContext.Role'  is null.");
             }
-            var role = await _context.Role.FindAsync(id);
+            var role = await _context.Roles.FindAsync(id);
             if (role != null)
             {
-                _context.Role.Remove(role);
+                _context.Roles.Remove(role);
             }
             
             await _context.SaveChangesAsync();
@@ -176,11 +176,11 @@ namespace SimpleEcommerceAspNet6.Areas.Manager.Controllers
 
         private bool RoleExists(int id)
         {
-          return (_context.Role?.Any(e => e.RoleId == id)).GetValueOrDefault();
+          return (_context.Roles?.Any(e => e.RoleId == id)).GetValueOrDefault();
         }
         private bool RoleNameExists(string roleName)
         {
-            return (_context.Role?.Any(e => e.RoleName.ToLower().Equals(roleName.ToLower()))).GetValueOrDefault();
+            return (_context.Roles?.Any(e => e.RoleName.ToLower().Equals(roleName.ToLower()))).GetValueOrDefault();
         }
     }
 }

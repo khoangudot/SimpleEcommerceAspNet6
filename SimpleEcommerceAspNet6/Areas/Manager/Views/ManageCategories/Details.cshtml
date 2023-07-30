@@ -1,0 +1,41 @@
+﻿@model SimpleEcommerceAspNet6.Data.Category
+
+@{
+    ViewData["Title"] = "Thông Tin Danh Mục Sản Phẩm";
+    Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Manager" asp-controller="DashBoard" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>DashBoard</a>
+            <a asp-area="Manager" asp-controller="ManageCategories" asp-action="Index" class="breadcrumb-item">Danh Mục Sản Phẩm</a>
+            <span class="breadcrumb-item active">Thông Tin Danh Mục Sản Phẩm</span>
+        </nav>
+    </div>
+</div>
+<h1 style="color:#03bcf4">Thông Tin Danh Mục Sản Phẩm</h1>
+
+<div class="card">
+    <div class="card-body">    
+        <div class="table-responsive">
+            <table class="product-info-table m-t-20">
+                <tbody>
+                    <tr>
+                        <td>Danh Mục Sản Phẩm:</td>
+                        <td> @Model.CategoryName</td>
+                    </tr>
+                    <tr>
+                        <td>Mô tả:</td>
+                        <td>@Model.Description</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div>
+    <a class="btn btn-info btn-tone m-r-5" asp-action="Edit" asp-route-id="@Model.CategoryId">Edit</a>
+    <a class="btn btn-info btn-tone m-r-5" asp-action="Index">Back to List</a>
+</div>

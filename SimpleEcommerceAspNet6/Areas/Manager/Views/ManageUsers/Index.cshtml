@@ -1,0 +1,114 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<SimpleEcommerceAspNet6.Data.User>
+
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Danh sách tài khoản" + CurrentPage;
+    Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
+}
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <span class="breadcrumb-item active">Danh sách tài khoản(Page: @CurrentPage)</span>
+        </nav>
+    </div>
+</div>
+<div class="d-flex justify-content-between ">
+        <h3 class="text-center mb-4" style="color:#03bcf4">Danh Sách Tài Khoản</h3>
+        <a asp-area="Manager" asp-controller="ManageUsers" asp-action="Create" class="btn btn-info m-r-5 mb-3">Tạo Mới Tài Khoản</a>
+</div>
+<div class="d-md-flex">
+    <div class="m-b-10 m-r-15">
+        <select class="custom-select" id="idrole" name="idrole" style="min-width: 200px;" asp-items="ViewBag.Roles">
+            <option value="0" disabled selected>Chọn quyền truy cập</option>
+        </select>
+
+    </div>
+    <div class="m-b-10 m-r-15">
+        <select class="custom-select" id="idstatus" name="idstatus" style="min-width: 200px;" asp-items="ViewBag.status">
+            <option value="" disabled selected>Chọn trạng thái</option>
+        </select>
+    </div>
+</div>
+<div class="table-responsive ">
+    <table class="table table-bordered" style="text-align:center">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Họ và Tên</th>
+                <th scope="col">Tên Đăng Nhập</th>
+                <th scope="col">Quyền Truy Cập</th>
+                <th scope="col">Email</th>
+                <th scope="col">Số Điện Thoại</th>
+                <th scope="col">Lần Đăng Nhập Cuối</th>
+                <th scope="col">Trạng Thái</th>
+                <th class="px-0 mx-0" scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.UserId</td>
+                        <td>@user.FullName</td>
+                        <td>@user.UserName</td>
+                        <td>
+                            @if (user.Role_Users != null)
+                            {
+                                foreach (var roleUser in user.Role_Users)
+                                {
+                                    <span>@roleUser.Role.RoleName </span><br/>
+                                }
+                            }
+                        </td>
+                        <td>@user.Email</td>
+                        <td>@user.Phone</td>
+                        <td>@user.LastLogin</td>
+                        <td >
+                            @if (user.Active)
+                            {
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-success badge-dot m-r-10"></div>
+                                    <div>Active</div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="d-flex align-items-center">
+                                    <div class="badge badge-success badge-dot m-r-10"></div>
+                                    <div>Blog</div>
+                                </div>
+                            }
+
+                        <td>
+                            <div class="dropdown dropdown-animated scale-left">
+
+                                <i type="button" class="anticon anticon-ordered-list" dropdown-toggle" data-toggle="dropdown">
+                                </i>
+                                <div class="dropdown-menu">
+                                    <a asp-area="Manager" asp-controller="ManageUsers" asp-action="Details" asp-route-id="@user.UserId" class="text-decoration-none mx-2 dropdown-item" style="color:black">
+                                        <i class="anticon anticon-select">Details</i>
+                                    </a>
+                                    <a asp-area="Manager" asp-controller="ManageUsers" asp-action="Edit" asp-route-id="@user.UserId" class="text-decoration-none mx-2 dropdown-item" style="color:black">
+                                        <i class="anticon anticon-edit">Edit</i>
+                                    </a>
+                                    <a asp-area="Manager" asp-controller="ManageUsers" asp-action="Delete" asp-route-id="@user.UserId" class="text-decoration-none mx-2 dropdown-item" style="color:black">
+                                        <i class="anticon anticon-delete">Delete</i>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div aria-label="Page navigation example">
+        <ul class="pagination">
+            <pager class="pager-container" list="@Model" asp-area="Manager" asp-controller="ManageUsers" asp-action="Index" />
+        </ul>
+    </div>
+</div>

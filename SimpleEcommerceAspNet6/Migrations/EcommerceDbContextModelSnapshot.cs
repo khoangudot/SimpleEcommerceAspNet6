@@ -37,12 +37,45 @@ namespace SimpleEcommerceAspNet6.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Published")
-                        .HasColumnType("bit");
-
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Đồ dùng nhà bếp"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Đồ chơi trẻ em"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "Dụng cụ học tập"
+                        });
+                });
+
+            modelBuilder.Entity("SimpleEcommerceAspNet6.Data.Customer", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"), 1L, 1);
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CustomerId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("SimpleEcommerceAspNet6.Data.DeliveryAddress", b =>
@@ -53,7 +86,7 @@ namespace SimpleEcommerceAspNet6.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DeliveryAddressId"), 1L, 1);
 
-                    b.Property<int>("CustomerUserId")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<string>("DeliveryAddressDescription")
@@ -62,7 +95,7 @@ namespace SimpleEcommerceAspNet6.Migrations
 
                     b.HasKey("DeliveryAddressId");
 
-                    b.HasIndex("CustomerUserId");
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("DeliveryAddresses");
                 });
@@ -75,11 +108,13 @@ namespace SimpleEcommerceAspNet6.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
-                    b.Property<bool>("Deleted")
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("Deleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("DeliveryAddress")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Note")
@@ -88,7 +123,7 @@ namespace SimpleEcommerceAspNet6.Migrations
                     b.Property<DateTime?>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Paid")
+                    b.Property<bool?>("Paid")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("PaymentDate")
@@ -100,25 +135,22 @@ namespace SimpleEcommerceAspNet6.Migrations
                     b.Property<DateTime?>("ShipDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ShipperId")
+                    b.Property<int?>("ShipperId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalPrice")
+                    b.Property<int?>("TotalPrice")
                         .HasColumnType("int");
 
                     b.Property<int>("TransactStatusId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("OrderId");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("ShipperId");
 
                     b.HasIndex("TransactStatusId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -152,10 +184,10 @@ namespace SimpleEcommerceAspNet6.Migrations
                     b.Property<bool?>("Active")
                         .HasColumnType("bit");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreateDate")
+                    b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -210,7 +242,27 @@ namespace SimpleEcommerceAspNet6.Migrations
 
                     b.HasKey("RoleId");
 
-                    b.ToTable("Role");
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            RoleId = 1,
+                            Description = "Quản Lý",
+                            RoleName = "Admin"
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            Description = "Nhân Viên",
+                            RoleName = "Staff"
+                        },
+                        new
+                        {
+                            RoleId = 3,
+                            Description = "Khách Hàng",
+                            RoleName = "Customer"
+                        });
                 });
 
             modelBuilder.Entity("SimpleEcommerceAspNet6.Data.Role_User", b =>
@@ -225,7 +277,7 @@ namespace SimpleEcommerceAspNet6.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Role_User");
+                    b.ToTable("Role_Users");
                 });
 
             modelBuilder.Entity("SimpleEcommerceAspNet6.Data.Shipper", b =>
@@ -282,7 +334,9 @@ namespace SimpleEcommerceAspNet6.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
 
                     b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -296,17 +350,14 @@ namespace SimpleEcommerceAspNet6.Migrations
                     b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<DateTime?>("LastLogin")
                         .HasColumnType("datetime2");
@@ -317,38 +368,38 @@ namespace SimpleEcommerceAspNet6.Migrations
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Salt")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
                 });
 
             modelBuilder.Entity("SimpleEcommerceAspNet6.Data.Customer", b =>
                 {
-                    b.HasBaseType("SimpleEcommerceAspNet6.Data.User");
+                    b.HasOne("SimpleEcommerceAspNet6.Data.User", "User")
+                        .WithOne("Customer")
+                        .HasForeignKey("SimpleEcommerceAspNet6.Data.Customer", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasDiscriminator().HasValue("Customer");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SimpleEcommerceAspNet6.Data.DeliveryAddress", b =>
                 {
                     b.HasOne("SimpleEcommerceAspNet6.Data.Customer", "Customer")
                         .WithMany("DeliveryAddresses")
-                        .HasForeignKey("CustomerUserId")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -357,21 +408,19 @@ namespace SimpleEcommerceAspNet6.Migrations
 
             modelBuilder.Entity("SimpleEcommerceAspNet6.Data.Order", b =>
                 {
-                    b.HasOne("SimpleEcommerceAspNet6.Data.Shipper", "Shipper")
+                    b.HasOne("SimpleEcommerceAspNet6.Data.Customer", "Customer")
                         .WithMany("Orders")
-                        .HasForeignKey("ShipperId")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("SimpleEcommerceAspNet6.Data.Shipper", "Shipper")
+                        .WithMany("Orders")
+                        .HasForeignKey("ShipperId");
 
                     b.HasOne("SimpleEcommerceAspNet6.Data.TransactStatus", "TransactStatus")
                         .WithMany("Orders")
                         .HasForeignKey("TransactStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SimpleEcommerceAspNet6.Data.Customer", "Customer")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -405,9 +454,7 @@ namespace SimpleEcommerceAspNet6.Migrations
                 {
                     b.HasOne("SimpleEcommerceAspNet6.Data.Category", "category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.Navigation("category");
                 });
@@ -434,6 +481,13 @@ namespace SimpleEcommerceAspNet6.Migrations
             modelBuilder.Entity("SimpleEcommerceAspNet6.Data.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("SimpleEcommerceAspNet6.Data.Customer", b =>
+                {
+                    b.Navigation("DeliveryAddresses");
+
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("SimpleEcommerceAspNet6.Data.Order", b =>
@@ -463,14 +517,9 @@ namespace SimpleEcommerceAspNet6.Migrations
 
             modelBuilder.Entity("SimpleEcommerceAspNet6.Data.User", b =>
                 {
+                    b.Navigation("Customer");
+
                     b.Navigation("Role_Users");
-                });
-
-            modelBuilder.Entity("SimpleEcommerceAspNet6.Data.Customer", b =>
-                {
-                    b.Navigation("DeliveryAddresses");
-
-                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }
