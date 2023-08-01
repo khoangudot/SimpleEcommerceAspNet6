@@ -10,10 +10,14 @@
     <link rel="shortcut icon" href="~/area.manager.assets/images/logo/favicon.png">
 
     <!-- page css -->
+    <link href="~/area.manager.assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
     <!-- Core css -->
     <link href="~/area.manager.assets/css/app.min.css" rel="stylesheet">
     <link href="~/area.manager.assets/css/logo.css" rel="stylesheet" />
 
+ 
+
+    @await RenderSectionAsync("Styles", required: false)
    
 </head>
 
@@ -22,6 +26,7 @@
         <div class="layout">
             <!-- Header START -->
             @await Html.PartialAsync("_HeaderPartialView")
+           
             <!-- Header END -->
 
             <!-- Side Nav START -->
@@ -56,7 +61,7 @@
     <!-- page js -->
     <script src="~/area.manager.assets/vendors/quill/quill.min.js"></script>
     @await Component.InvokeAsync("Notyf")
-    @await RenderSectionAsync("Script",required: false)
+    @await RenderSectionAsync("Scripts",required:false)
 </body>
 
 </html>

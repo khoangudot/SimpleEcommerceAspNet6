@@ -16,8 +16,8 @@ namespace SimpleEcommerceAspNet6.Data
         public string? Thumbnail { get; set; }
         public DateTime? CreateDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        public bool? HomeFlag { get; set; }
-        public bool? Active { get; set; }
+        public bool HomeFlag { get; set; }
+        public bool Active { get; set; }
         public int? UnitInStock { get; set; }
         public Category? category { get; set; }
         public virtual ICollection<OrderDetail>? OrderDetails { get; set; }

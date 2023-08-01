@@ -1,91 +1,221 @@
 ﻿@model SimpleEcommerceAspNet6.Data.Product
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Product Details";
     Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
 }
-
-<h1>Details</h1>
-
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SortDescription)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SortDescription)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Discount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Discount)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Thumbnail)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Thumbnail)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreateDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModifiedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ModifiedDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HomeFlag)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HomeFlag)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Active)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UnitInStock)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UnitInStock)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.category.CategoryId)
-        </dd>
-    </dl>
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Manager" asp-controller="DashBoard" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>DashBoard</a>
+            <a asp-area="Manager" asp-controller="ManageProducts" asp-action="Index" class="breadcrumb-item">Danh Sách Sản Phẩm</a>
+            <span class="breadcrumb-item active">Thông tin sản phẩm</span>
+        </nav>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ProductId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div >
+    <div class="page-header no-gutters has-tab">
+        <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15">
+                <div class="avatar avatar-image rounded" style="height: 70px; width: 70px">
+                    
+                    <img src="~/images/products/@Model.Thumbnail" alt="">
+                </div>
+                <div class="m-l-15">
+                    <h4 class="m-b-0">@Model.ProductName</h4>
+                    <p class="text-muted m-b-0">ID: @Model.ProductId</p>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="m-b-15">
+                    <a asp-action="Edit" asp-route-ProductId="@Model.ProductId" class="btn btn-info">
+                        <i class="anticon anticon-save"></i>
+                        <span>Edit</span>
+                    </a>
+                </div>
+                <div class="m-b-15 ml-2">
+                    <a asp-area="Manager" asp-controller="ManageProducts" asp-action="Index" class="btn btn-info">
+                        <i class="anticon anticon-step-backward"></i>
+                        <span>Back to list</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#product-overview">Overview</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#product-images">Product Description</a>
+            </li>
+        </ul>
+    </div>
+    <div class="container-fluid">
+        <div class="tab-content m-t-15">
+            <div class="tab-pane fade show active" id="product-overview">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <i class="font-size-40 text-success anticon anticon-smile"></i>
+                                    <div class="m-l-15">
+                                        <p class="m-b-0 text-muted">10 ratings</p>
+                                        <div class="star-rating m-t-5">
+                                            <input type="radio" id="star3-5" name="rating-3" value="5" checked disabled /><label for="star3-5" title="5 star"></label>
+                                            <input type="radio" id="star3-4" name="rating-3" value="4" disabled /><label for="star3-4" title="4 star"></label>
+                                            <input type="radio" id="star3-3" name="rating-3" value="3" disabled /><label for="star3-3" title="3 star"></label>
+                                            <input type="radio" id="star3-2" name="rating-3" value="2" disabled /><label for="star3-2" title="2 star"></label>
+                                            <input type="radio" id="star3-1" name="rating-3" value="1" disabled /><label for="star3-1" title="1 star"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <i class="font-size-40 text-primary anticon anticon-shopping-cart"></i>
+                                    <div class="m-l-15">
+                                        <p class="m-b-0 text-muted">Sales</p>
+                                        <h3 class="m-b-0 ls-1">1,521</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <i class="font-size-40 text-primary anticon anticon-message"></i>
+                                    <div class="m-l-15">
+                                        <p class="m-b-0 text-muted">Reviews</p>
+                                        <h3 class="m-b-0 ls-1">27</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <i class="font-size-40 text-primary anticon anticon-stock"></i>
+                                    <div class="m-l-15">
+                                        <p class="m-b-0 text-muted">Available Stock</p>
+                                        <h3 class="m-b-0 ls-1">152</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Basic Info</h4>
+                        <div class="table-responsive">
+                            <table class="product-info-table m-t-20">
+                                <tbody>
+                                    <tr>
+                                        <td>Price:</td>
+                                        <td class="text-dark font-weight-semibold">@Model.Price (VNĐ)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Discount:</td>
+                                        <td class="text-dark font-weight-semibold">@Model.Discount (VNĐ)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Category:</td>
+                                        <td>@Model.category.CategoryName</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Brand:</td>
+                                        <td>H&M</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tax Rate:</td>
+                                        <td>10%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status:</td>
+                                        @if(Model.Active)
+                                        {
+                                            <td>
+                                                <span class="badge badge-pill badge-cyan">In Stock</span>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <span class="badge badge-pill badge-red">Out Stock</span>
+                                            </td>
+                                        }
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Option Info</h4>
+                        <div class="table-responsive">
+                            <table class="product-info-table m-t-20">
+                                <tbody>
+                                    <tr>
+                                        <td>Sizes:</td>
+                                        <td>S, M, L, XL</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Colors:</td>
+                                        <td class="d-flex">
+                                            <span class="d-flex align-items-center m-r-20">
+                                                <span class="badge badge-dot product-color m-r-5" style="background-color: #4c4e69"></span>
+                                                <span>Dark Blue</span>
+                                            </span>
+                                            <span class="d-flex align-items-center m-r-20">
+                                                <span class="badge badge-dot product-color m-r-5" style="background-color: #868686"></span>
+                                                <span>Gray</span>
+                                            </span>
+                                            <span class="d-flex align-items-center m-r-20">
+                                                <span class="badge badge-dot product-color m-r-5" style="background-color: #8498c7"></span>
+                                                <span>Gray Blue</span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fit:</td>
+                                        <td>Skinny Fit</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Material:</td>
+                                        <td>Polyester</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ship From:</td>
+                                        <td>Columbia</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="product-images">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card">
+                            <div class="card-body">
+                                <text>@Model.Description</text>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

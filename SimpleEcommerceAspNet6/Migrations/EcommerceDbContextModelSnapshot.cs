@@ -181,7 +181,7 @@ namespace SimpleEcommerceAspNet6.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
 
-                    b.Property<bool?>("Active")
+                    b.Property<bool>("Active")
                         .HasColumnType("bit");
 
                     b.Property<int?>("CategoryId")
@@ -196,7 +196,7 @@ namespace SimpleEcommerceAspNet6.Migrations
                     b.Property<decimal?>("Discount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<bool?>("HomeFlag")
+                    b.Property<bool>("HomeFlag")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("ModifiedDate")

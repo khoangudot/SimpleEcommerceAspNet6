@@ -5,83 +5,151 @@
     Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
 }
 
-<h1>Edit</h1>
-
-<h4>Product</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ProductId" />
-            <div class="form-group">
-                <label asp-for="ProductName" class="control-label"></label>
-                <input asp-for="ProductName" class="form-control" />
-                <span asp-validation-for="ProductName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SortDescription" class="control-label"></label>
-                <input asp-for="SortDescription" class="form-control" />
-                <span asp-validation-for="SortDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Discount" class="control-label"></label>
-                <input asp-for="Discount" class="form-control" />
-                <span asp-validation-for="Discount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Thumbnail" class="control-label"></label>
-                <input asp-for="Thumbnail" class="form-control" />
-                <span asp-validation-for="Thumbnail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreateDate" class="control-label"></label>
-                <input asp-for="CreateDate" class="form-control" />
-                <span asp-validation-for="CreateDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModifiedDate" class="control-label"></label>
-                <input asp-for="ModifiedDate" class="form-control" />
-                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HomeFlag" class="control-label"></label>
-                <input asp-for="HomeFlag" class="form-control" />
-                <span asp-validation-for="HomeFlag" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Active" class="control-label"></label>
-                <input asp-for="Active" class="form-control" />
-                <span asp-validation-for="Active" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UnitInStock" class="control-label"></label>
-                <input asp-for="UnitInStock" class="form-control" />
-                <span asp-validation-for="UnitInStock" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Manager" asp-controller="DashBoard" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>DashBoard</a>
+            <a asp-area="Manager" asp-controller="ManageProducts" asp-action="Index" class="breadcrumb-item">Danh Sách Sản Phẩm</a>
+            <span class="breadcrumb-item active">Chỉnh Sửa Thông Tin Sản Phẩm</span>
+        </nav>
     </div>
 </div>
+<form asp-controller="ManageProducts" asp-action="Edit" method="post" asp-route-id="@Model.ProductId" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ProductId" />
+    <input type="hidden" asp-for="Thumbnail" />
+    <input type="hidden" asp-for="CreateDate" />
+    <div class="page-header no-gutters has-tab">
+        <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15">
+                <div class="avatar avatar-image rounded" style="height: 70px; width: 70px">
+                    <img src="~/images/products/@Model.Thumbnail" alt="">
+                    
+                </div>
+                <div class="m-l-15">
+                    <h4 class="m-b-0">Sản phẩm</h4>
+                    <p class="text-muted m-b-0">@Model.ProductName</p>
+                </div>
+            </div>
+           <div class="d-flex">
+               <div class="m-b-15">
+                    <button class="btn btn-info">
+                        <i class="anticon anticon-save"></i>
+                        <span>Save</span>
+                    </button>
+                </div>
+                <div class="m-b-15 ml-2">
+                    <a asp-area="Manager" asp-controller="ManageProducts" asp-action="Index" class="btn btn-info">
+                        <i class="anticon anticon-step-backward"></i>
+                        <span>Back to list</span>
+                    </a>
+                </div>
+                
+           </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#product-edit-basic">Basic Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#product-edit-option">Option Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#product-edit-description">Description</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="font-weight-semibold" for="productName">Tên sản phẩm</label>
+                            <input type="text" class="form-control" asp-for="ProductName">
+                            <span asp-validation-for="ProductName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="font-weight-semibold" for="ShortDesc">Mô Tả Ngắn</label>
+                            <input type="text" class="form-control" asp-for="SortDescription">
+                            <span asp-validation-for="SortDescription" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="font-weight-semibold" for="productPrice">Giá bán(VNĐ)</label>
+                            <input type="text" class="form-control" asp-for="Price">
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="font-weight-semibold" for="productPrice">Discount(VNĐ)</label>
+                            <input type="text" class="form-control" asp-for="Discount">
+                            <span asp-validation-for="Discount" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label class="font-weight-semibold" for="productCategory">Danh mục sản phẩm</label>
+                            <select class="custom-select" asp-for="CategoryId" style="min-width: 200px;" asp-items="ViewBag.Categories">
+                                <option value="" disabled selected>Chọn danh mục</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-6">
+                            <label class="font-weight-semibold" for="productName">Số Lượng Nhập Kho</label>
+                            <input type="number" class="form-control" asp-for="UnitInStock">
+                            <span asp-validation-for="UnitInStock" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="product-edit-option">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productBrand">Ảnh đại diện</label>
+                        <input name="fileThumnail" type="file" class="form-control-file" asp-for="Thumbnail" />
+                        <span asp-validation-for="UnitInStock" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="m-t-25">
+                            <div class="form-group d-flex align-items-center">
+                                <div class="switch m-r-10">
+                                    <input type="checkbox" asp-for="Active" checked="">
+                                    <label for="Active"></label>
+                                </div>
+                                <label>Public</label>
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                                <div class="switch m-r-10">
+                                    <input type="checkbox" asp-for="HomeFlag">
+                                    <label for="HomeFlag"></label>
+                                </div>
+                                <label>HomeFlag</label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="product-edit-description">
+            <div class="card">
+                <div class="card-body">
+                    <div id="productDescription">
+                        <div class="input-group ">
+
+                            <textarea rows="15"  class="form-control " asp-for="Description" placeholder="Mô tả chi tiết sản phẩm "></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 

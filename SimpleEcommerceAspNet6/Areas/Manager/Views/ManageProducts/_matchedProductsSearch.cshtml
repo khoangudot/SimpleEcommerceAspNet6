@@ -1,0 +1,55 @@
+﻿@using SimpleEcommerceAspNet6.Data;
+@model List<Product>
+@if (Model != null)
+{
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>
+                @product.ProductId
+            </td>
+            <td>
+                <div class="d-flex align-items-center">
+                    <img class="img-fluid rounded" style="max-width: 60px" src="~/images/products/@product.Thumbnail" />
+
+                    <h6 class="m-b-0 m-l-10">@product.ProductName</h6>
+                </div>
+            </td>
+            <td>@product.category?.CategoryName</td>
+            <td>@product.Price.ToString("#,##0")</td>
+            <td>@product.Discount?.ToString("#,##0")</td>
+            <td>@product.UnitInStock</td>
+            @if (product.Active)
+            {
+                <td>
+                    <span class="badge badge-pill badge-cyan">Active</span>
+                </td>
+
+            }
+            else
+            {
+                <td>
+                    <span class="badge badge-pill badge-red">Disable</span>
+                </td>
+            }
+            <td>
+                <div class="dropdown dropdown-animated scale-left">
+
+                    <i type="button" class="anticon anticon-ordered-list" dropdown-toggle" data-toggle="dropdown">
+                    </i>
+                    <div class="dropdown-menu">
+                        <a asp-area="Manager" asp-controller="ManageProducts" asp-action="Details" asp-route-ProductId="@product.ProductId" class="text-decoration-none mx-2 dropdown-item" style="color:black">
+                            <i class="anticon anticon-select">Details</i>
+                        </a>
+                        <a asp-area="Manager" asp-controller="ManageProducts" asp-action="Edit" asp-route-ProductId="@product.ProductId" class="text-decoration-none mx-2 dropdown-item" style="color:black">
+                            <i class="anticon anticon-edit">Edit</i>
+                        </a>
+                        <a asp-area="Manager" asp-controller="ManageProducts" asp-action="Delete" asp-route-ProductId="@product.ProductId" class="text-decoration-none mx-2 dropdown-item" style="color:black">
+                            <i class="anticon anticon-delete">Delete</i>
+                        </a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    }
+}
