@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "m4saBeQBHCvcZiMsPVhm5XGCV36LqkeNARjgWO4f8fw=",
+  "Hash": "O1c+zIyvAQnefaU7cOYUSEBrNHbAlz4fxY44WgDDLIs=",
   "Source": "SimpleEcommerceAspNet6",
   "BasePath": "_content/SimpleEcommerceAspNet6",
   "Mode": "Default",
@@ -16250,6 +16250,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\product-name-abc-edx.jpg"
+    },
+    {
+      "Identity": "E:\\Fshop\\WebMVC\\SimpleEcommerceAspNet6\\SimpleEcommerceAspNet6\\wwwroot\\images\\products\\que.jpg",
+      "SourceId": "SimpleEcommerceAspNet6",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Fshop\\WebMVC\\SimpleEcommerceAspNet6\\SimpleEcommerceAspNet6\\wwwroot\\",
+      "BasePath": "_content/SimpleEcommerceAspNet6",
+      "RelativePath": "images/products/que.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\que.jpg"
     },
     {
       "Identity": "E:\\Fshop\\WebMVC\\SimpleEcommerceAspNet6\\SimpleEcommerceAspNet6\\wwwroot\\images\\products\\sdfds.jpg",
