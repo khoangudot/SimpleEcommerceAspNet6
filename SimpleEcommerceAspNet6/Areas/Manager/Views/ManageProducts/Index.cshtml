@@ -1,5 +1,5 @@
 ﻿@using PagedList.Core.Mvc
-@model PagedList.Core.IPagedList<SimpleEcommerceAspNet6.Data.Product>
+@model PagedList.Core.IPagedList<SimpleEcommerceAspNet6.Models.Product>
 
 @{
     int CurrentPage = ViewBag.CurrentPage;
@@ -26,7 +26,6 @@
                     <div class="m-b-10 m-r-15">
                         <select asp-items="ViewBag.Categories" id="selectedCateId" name="selectedCateId" class="custom-select" style="min-width: 180px;">
                             <option value="0">Chọn danh mục</option>
-                            
                         </select>
                     </div>
                     

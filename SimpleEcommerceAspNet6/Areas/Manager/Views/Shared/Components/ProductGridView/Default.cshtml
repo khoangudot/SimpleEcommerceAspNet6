@@ -1,0 +1,12 @@
+﻿@using SimpleEcommerceAspNet6
+@using SimpleEcommerceAspNet6.Data;
+@model List<Product>
+
+<ul class="list-group">
+    @foreach(var product in Model)
+    {
+        <li class="list-group-item">
+            ProductName: @product.ProductName <strong>Price: @product.Price.ToString("#,##0") </strong>
+        </li>
+    }
+</ul>

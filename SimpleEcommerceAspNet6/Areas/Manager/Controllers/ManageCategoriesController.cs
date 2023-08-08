@@ -1,8 +1,8 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
-using Microsoft.AspNetCore.DataProtection.KeyManagement.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SimpleEcommerceAspNet6.Data;
+using SimpleEcommerceAspNet6.Models;
 
 namespace SimpleEcommerceAspNet6.Areas.Manager.Controllers
 {

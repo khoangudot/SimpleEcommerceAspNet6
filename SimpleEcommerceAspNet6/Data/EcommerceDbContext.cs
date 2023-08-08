@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SimpleEcommerceAspNet6.Models;
 
 namespace SimpleEcommerceAspNet6.Data
 {
@@ -34,7 +35,7 @@ namespace SimpleEcommerceAspNet6.Data
                .HasDefaultValue(true);
 
 
-            modelBuilder.Entity<Customer>().HasKey(c => c.CustomerId);
+            modelBuilder.Entity<Customer>().HasKey(c => c.UserId);
             modelBuilder.Entity<Customer>()
                .Property(c => c.UserId)
                .ValueGeneratedNever(); // UserId không được sinh tự động (vì là primary key và cùng giá trị với UserId trong bảng User)
@@ -60,10 +61,14 @@ namespace SimpleEcommerceAspNet6.Data
                .HasForeignKey(ru => ru.RoleId);
 
             modelBuilder.Entity<Product>()
+                .Property(p => p.Discount)
+                .HasDefaultValue(0m);
+
+            modelBuilder.Entity<Product>()
                .HasOne(p => p.category)
                .WithMany(p => p.Products)
                .HasForeignKey(p => p.CategoryId);
-
+               
             modelBuilder.Entity<Order>()
               .HasOne(o => o.Customer)
               .WithMany(o => o.Orders)

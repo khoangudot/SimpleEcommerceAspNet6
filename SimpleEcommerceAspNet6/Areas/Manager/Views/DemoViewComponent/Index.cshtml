@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
+}
+
+<DemoCustomtag categories="@Model" list-title="Category"></DemoCustomtag>
+
+@await Component.InvokeAsync("ProductGridView")
+

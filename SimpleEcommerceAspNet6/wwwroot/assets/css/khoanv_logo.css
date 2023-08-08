@@ -1,0 +1,21 @@
+.khoanv_logo h2 {
+    position: relative;
+    font-size: 4em;
+    letter-spacing: 2px;
+    color: #fff;
+   text-shadow: 0 0 50px #03bcf4,
+   0 0 100px #03bcf4,
+   0 0 150px #03bcf4,
+   0 0 200px #03bcf4,
+   0 0 25px #03bcf4;
+   animation: animate 5s linear infinite;
+}
+
+@keyframes animate {
+    0%{
+        filter: hue-rotate(0deg);
+    }
+    100%{
+        filter: hue-rotate(360deg);
+    }
+}

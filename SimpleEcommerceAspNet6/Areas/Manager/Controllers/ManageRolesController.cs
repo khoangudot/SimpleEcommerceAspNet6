@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SimpleEcommerceAspNet6.Data;
+using SimpleEcommerceAspNet6.Models;
 
 namespace SimpleEcommerceAspNet6.Areas.Manager.Controllers
 {

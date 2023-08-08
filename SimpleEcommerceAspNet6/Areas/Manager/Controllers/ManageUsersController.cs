@@ -4,16 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using AspNetCore;
 using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PagedList.Core;
 using SimpleEcommerceAspNet6.Data;
+using SimpleEcommerceAspNet6.Models;
 
 namespace SimpleEcommerceAspNet6.Areas.Manager.Controllers
 {
     [Area("Manager")]
+    
     public class ManageUsersController : Controller
     {
         private readonly EcommerceDbContext _context;

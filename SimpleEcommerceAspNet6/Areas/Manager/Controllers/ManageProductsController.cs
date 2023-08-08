@@ -5,18 +5,23 @@ using System.Security.Policy;
 using System.Threading.Tasks;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using AspNetCoreHero.ToastNotification.Notyf;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PagedList.Core;
 using SimpleEcommerceAspNet6.Data;
+using SimpleEcommerceAspNet6.Filter;
 using SimpleEcommerceAspNet6.Helpper;
+using SimpleEcommerceAspNet6.Models;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace SimpleEcommerceAspNet6.Areas.Manager.Controllers
 {
     [Area("Manager")]
+    //[TypeFilter(typeof(CustomAuthorizeFilter))]
+    //[Authorize(Roles ="Admin")]
     public class ManageProductsController : Controller
     {
         private readonly EcommerceDbContext _context;
