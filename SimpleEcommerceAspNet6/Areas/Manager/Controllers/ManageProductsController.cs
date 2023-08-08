@@ -20,7 +20,7 @@ using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 namespace SimpleEcommerceAspNet6.Areas.Manager.Controllers
 {
     [Area("Manager")]
-    //[TypeFilter(typeof(CustomAuthorizeFilter))]
+    [TypeFilter(typeof(CustomAuthorizeFilter))]
     //[Authorize(Roles ="Admin")]
     public class ManageProductsController : Controller
     {
